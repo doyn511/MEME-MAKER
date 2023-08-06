@@ -1,7 +1,10 @@
+const fileInput = document.getElementById("file");
 const modeBtn = document.getElementById("mode-btn")
 const destroyBtn = document.getElementById("destroy-btn");
 const eraseBtn = document.getElementById("eraser-btn");
-const colorOptions = Array.from(document.getElementsByClassName("color-option")); //HTML Collection으로 넘어오는 정보를 Array로 생성
+const colorOptions = Array.from(
+  document.getElementsByClassName("color-option")
+  ); //HTML Collection으로 넘어오는 정보를 Array로 생성
 const lineWidth = document.getElementById("line-width");
 const color = document.getElementById("color");
 const canvas = document.querySelector("canvas");
@@ -13,6 +16,7 @@ const CANVAS_HEIGHT = 800;
 canvas.width = CANVAS_WIDTH;
 canvas.height = CANVAS_HEIGHT;
 ctx.lineWidth = lineWidth.value;
+
 let isPainting = false;
 let isFilling = false;
 
@@ -77,6 +81,17 @@ function onEraserClick(){
   modeBtn.innerText = "Draw";
 }
 
+function onFileChange(event){
+  const file = event.target.files[0];
+  const url = URL.createObjectURL(file);
+  const image = new Image(); //HTML에서 img태그와 같음
+  image.src = url;
+  image.onload = function(){
+    ctx.drawImage(image, 0,0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    fileInput.value = null;
+  }
+}
+
 canvas.addEventListener("mousemove", onMove);
 canvas.addEventListener("mousedown", startPainting);
 canvas.addEventListener("mouseup", cancelPainting);
@@ -85,9 +100,9 @@ canvas.addEventListener("click", onCanvasClick);
 
 lineWidth.addEventListener("change", onLineWidthChange);
 color.addEventListener("change", onColorChange);
-
 colorOptions.forEach(color => color.addEventListener("click", onColorClick));
 
 modeBtn.addEventListener("click", onModeClick);
 destroyBtn.addEventListener("click", onDestroyClick);
 eraseBtn.addEventListener("click", onEraserClick);
+fileInput.addEventListener("change", onFileChange);
