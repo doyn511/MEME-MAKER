@@ -1,2 +1,17 @@
 # MEME-MAKER
-drawing board in Vanilla JS
+
+[기능]
+1. 그리기
+2. 칠하기
+3. 펜 색깔 변경하기
+4. 펜 두께 변경하기
+5. 캔버스 초기화하기
+6. 지우개
+7. 사진 삽입하기
+8. 글자 삽입하기
+9. 이미지 저장하기
+
+
+
+[결과물]
+<img width="1289" alt="스크린샷 2023-08-07 오후 10 41 31" src="https://github.com/doyn511/MEME-MAKER/assets/108219121/28df221b-6c04-4ef6-b4ea-5588c414a938">
